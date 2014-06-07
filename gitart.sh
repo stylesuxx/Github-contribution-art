@@ -341,15 +341,23 @@ declare -a n94=(0 0 0 0 1)
 declare -a n95=(0 0 0 0 1)
 declare -a n96=(1 1 1 1 0)
 
-mkdir $1
-cd $1
+if [ $# -lt 4 ]; then
+	echo -e "Usage: ./gitart.sh TARGET_DIR START_DATE TEXT"
+	exit
+fi
+
+directory=$1
+start_date=$2
+sentence=$3
+
+sentence="$(sentence^^)"
+
+mkdir "${directory}"
+cd "${directory}"
 git init
 touch gitart.txt
 git add .
 
-#Sat Jun 7 18:20:45 2014
-start_date="Sun Oct 6 18:20:45 2013"
-sentence="23"
 counter=0
 for (( i=0; i<${#sentence}; i++ )); do
 	letter=${sentence:$i:1}

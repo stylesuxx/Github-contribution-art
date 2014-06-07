@@ -1,4 +1,5 @@
 #!/bin/bash
+# Start date format: "Sun Oct 6 18:20:45 2013"
 
 # SPACE
 declare -a SP0=(0 0 0 0 0)

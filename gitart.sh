@@ -341,8 +341,13 @@ fi
 directory=$1
 start_date=$2
 sentence=$3
-
 sentence="${sentence^^}"
+
+valid="^[0-9A-Z ]*$"
+if ! [[ $sentence =~ $valid ]]; then
+	echo -e "Invalid characters."
+	exit
+fi
 
 mkdir "${directory}"
 cd "${directory}"
@@ -354,7 +359,7 @@ counter=0
 for (( i=0; i<${#sentence}; i++ )); do
 	letter=${sentence:$i:1}
 
-	numbers='^[0-9]+$'
+	numbers="^[0-9]$"
 	if [[ $letter =~ $numbers ]]; then
 		letter="n${letter}"
 	fi

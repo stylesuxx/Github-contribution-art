@@ -1,13 +1,5 @@
 #!/bin/bash
 
-# Su
-# Mo
-# Tu
-# We
-# Th
-# Fr
-# Sa
-
 # SPACE
 declare -a SP0=(0 0 0 0 0)
 declare -a SP1=(0 0 0 0 0)
@@ -341,7 +333,7 @@ declare -a n94=(0 0 0 0 1)
 declare -a n95=(0 0 0 0 1)
 declare -a n96=(1 1 1 1 0)
 
-if [ $# -lt 4 ]; then
+if [ $# -lt 3 ]; then
 	echo -e "Usage: ./gitart.sh TARGET_DIR START_DATE TEXT"
 	exit
 fi
@@ -350,7 +342,7 @@ directory=$1
 start_date=$2
 sentence=$3
 
-sentence="$(sentence^^)"
+sentence="${sentence^^}"
 
 mkdir "${directory}"
 cd "${directory}"
@@ -366,6 +358,10 @@ for (( i=0; i<${#sentence}; i++ )); do
 	if [[ $letter =~ $numbers ]]; then
 		letter="n${letter}"
 	fi
+
+	if [[ $letter == " " ]]; then
+		letter="SP"
+	fi	
 
 	for column in {0..4}; do
 		for row in {0..6}; do
